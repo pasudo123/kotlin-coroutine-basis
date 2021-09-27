@@ -53,6 +53,29 @@
 ### Timeout
 * 코루틴 실행을 취소하는 현실적인 방법은 제한시간이 초과되었을 때 취소하는 방법이다.
 
+## [Composing suspending functions](https://kotlinlang.org/docs/composing-suspending-functions.html)
+* suspending functions 을 구성하는 여러방식들을 확인한다.
+
+### Sequential by default
+* 순차적인 함수 호출을 통해서도 코루틴을 수행할 수 있다.
+
+### Concurrent using async
+* 순차적인 함수 호출이 아닌 동시에 수행하여 좀 더 빠르게 하고자 한다면 `async` 를 이용하여야 한다.
+* `async` 는 개념적으로 `launch` 와 유사하다. 경량화된 스레드, 코루틴이 분리되는데 다른 코루틴과 함께 동시에 실행된다.
+* 차이점으로는 `launch 는 job 을 반환한다. 그리고 결과값을 가지고 있지 않는다.` `async 는 deferred` 를 반환한다.
+  * async deferred 는 결과값을 추후에 제공할 수 있다.
+  * deferred 도 결국 job 인데 필요에 따라서 취소가 가능하다.
+
+### Lazily started async
+* async 를 조금은 느리게 실행하는 방법
+* `async(start = CoroutineStart.LAZY)` 를 작성하게 되면 비동기 코루틴을 조금 느리게 실행할 수 있다. deferred 는 이후에 start() 를 해주어야 한다.
+* deferred.start() 가 없이 await() 만 설정하면 비동기 코루틴은 블락되어 순차적으로 수행된다.
+
+### Async-style functions
+* 코틀린에서 하지 말라는 형태
+  * async block 을 코루틴 블럭 외부에서 쓰지 말기. 별도의 함수로 추출해서 쓰지 말기. 그렇게 쓰면 익셉션 발생 시, 서브 코루틴들은 중간에 종료되지 못한다.
+* GlobalScope launch 하는 형태로 함수를 감싸서 사용하지 말기.
+  * suspend 형태로 코루틴을 조합해서 쓰는 것이 좋다.
 
 ## TIP
 * 코루틴 스코프 내의 코루틴 이름을 알고 싶다면 intellij vm option 을 `-Dkotlinx.coroutines.debug` 로 준다
