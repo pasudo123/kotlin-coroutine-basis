@@ -10,7 +10,7 @@
   * 코루틴 빌더이고 새로운 코루틴 스코프의 시작이다.
 * delay()
   * 코루틴 스코프 내에서 일시중지할 수 있는 특별한 함수
-* structure concurrency
+* structure concurrency ⭐⭐⭐
   * structure concurrency 란 코루틴 스코프 내에서 또 다른 코루틴 스코프를 만들 수 있는 것을 의미한다.
 
 ### Extract function refactoring
