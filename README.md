@@ -77,6 +77,11 @@
 * GlobalScope launch 하는 형태로 함수를 감싸서 사용하지 말기.
   * suspend 형태로 코루틴을 조합해서 쓰는 것이 좋다.
 
+### coroutine under the hood
+> 코루틴은 마법이 아니다. 일반 코드처럼 실행된다.
+* state machine (sm)
+  * 현재의 호출 상태를 의미한다. `몇 번째 label 로 가야하는지` 정보도 여기 담긴다.
+
 ## TIP
 * 코루틴 스코프 내의 코루틴 이름을 알고 싶다면 intellij vm option 을 `-Dkotlinx.coroutines.debug` 로 준다
   * `println(Thread.currentThread.name())` 으로 작성한다
@@ -84,3 +89,4 @@
 ## reference
 * https://kotlinlang.org/docs/coroutines-overview.html
 * [인프런 코루틴 무료 강의](https://www.inflearn.com/course/%EC%83%88%EC%B0%A8%EC%9B%90-%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%BD%94%EB%A3%A8%ED%8B%B4/dashboard)
+* https://proandroiddev.com/structured-concurrency-in-action-97c749a8f755
