@@ -82,6 +82,18 @@
 * state machine (sm)
   * 현재의 호출 상태를 의미한다. `몇 번째 label 로 가야하는지` 정보도 여기 담긴다.
 
+## [Coroutine context and dispatchers](https://kotlinlang.org/docs/coroutine-context-and-dispatchers.html)
+* 코루틴은 항상 코루틴 컨텍스트 내에서 실행된다.
+* 코루틴 컨텍스트는 코루틴 디스패처를 포함하고 있다.
+  * 코루틴 디스패처는 해당 코루틴이 실행되는 스레드를 결정한다.
+  * 코루틴 디스패처는 코루틴을 특정 스레드로 제한하거나 스레드풀에 디스패치하도록 할 수 있다.
+  * 모든 코루틴 빌더(launch, async) 등은 코루틴 컨텍스트를 파라미터로 가지게 할 수 있다.
+
+### Coroutine scope
+* 코루틴 스코프를 이용해서 앱의 라이프사이클을 관리할 수 있다.
+  * 앱의 오퍼레이션이 다 끝나더라도 코루틴이 계속 동작한다면 메모리 누수가 발생할 수 있다.
+  * 코루틴 스코프는 이를 방지하게 한다.
+
 ## TIP
 * 코루틴 스코프 내의 코루틴 이름을 알고 싶다면 intellij vm option 을 `-Dkotlinx.coroutines.debug` 로 준다
   * `println(Thread.currentThread.name())` 으로 작성한다
