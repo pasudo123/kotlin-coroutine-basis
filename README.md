@@ -94,7 +94,10 @@
   * 앱의 오퍼레이션이 다 끝나더라도 코루틴이 계속 동작한다면 메모리 누수가 발생할 수 있다.
   * 코루틴 스코프는 이를 방지하게 한다.
 
-## TIP
+## [Asynchronous Flow](https://kotlinlang.org/docs/flow.html)
+* 비동기 suspend 함수는 단일 값을 반환한다. 하지만 비동기 연산에 의해서 다수 값을 반환은 어떻게 할 것인가?
+
+## [TIP](#)
 * 코루틴 스코프 내의 코루틴 이름을 알고 싶다면 intellij vm option 을 `-Dkotlinx.coroutines.debug` 로 준다
   * `println(Thread.currentThread.name())` 으로 작성한다
 
