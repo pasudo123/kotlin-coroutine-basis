@@ -43,6 +43,7 @@ class Flow03 {
 //            }
 //        }
         printlnWithThreadName("Calling simple function...")
+        // 바로 실행되지 않는다. : collect { } 이 호출될 때 실행된다.
         val flow = simple()
         printlnWithThreadName("Calling collect...")
         flow.collect { value -> printlnWithThreadName("first flow : $value")}

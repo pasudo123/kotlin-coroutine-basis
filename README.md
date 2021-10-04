@@ -99,6 +99,11 @@
 * `List<Int>` 를 이용한다면, 모든 값들을 한번에 획득할 수 있다. 근데 비동기적으로 계산되는 값들을 스트림으로 표현하려고 하면 `Flow<Int>` 를 사용해주어야 한다.
   * 사용방식은 `Sequence<Int>` 와 비슷하게 사용하면 된다.
 
+### Flow Builder
+* `flow { ... }` builder 는 가장 기본적인 플로우 빌더다. flow { } builder 형태로 선언하기 쉬운 다른 빌더들도 살펴본다.
+  * `flowOf` builder
+  * `asFlow()` builder
+
 ## [TIP](#)
 * 코루틴 스코프 내의 코루틴 이름을 알고 싶다면 intellij vm option 을 `-Dkotlinx.coroutines.debug` 로 준다
   * `println(Thread.currentThread.name())` 으로 작성한다
