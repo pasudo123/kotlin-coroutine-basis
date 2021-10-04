@@ -12,22 +12,24 @@ import kotlinx.coroutines.runBlocking
 [main @coroutine#3] : Second World
 [main @coroutine#1] : Done
  */
-fun main() = runBlocking {
-    doWorld04()
-    printlnWithThreadName("Done")
-}
-
-// 각각 개별 coroutineScope 내에서 실행된다.
-suspend fun doWorld04() = coroutineScope {
-    launch {
-        delay(1000L)
-        printlnWithThreadName("First World ")
+class Basis04 {
+    fun main() = runBlocking {
+        doWorld04()
+        printlnWithThreadName("Done")
     }
 
-    launch {
-        delay(2000L)
-        printlnWithThreadName("Second World")
-    }
+    // 각각 개별 coroutineScope 내에서 실행된다.
+    suspend fun doWorld04() = coroutineScope {
+        launch {
+            delay(1000L)
+            printlnWithThreadName("First World ")
+        }
 
-    printlnWithThreadName("Hello")
+        launch {
+            delay(2000L)
+            printlnWithThreadName("Second World")
+        }
+
+        printlnWithThreadName("Hello")
+    }
 }

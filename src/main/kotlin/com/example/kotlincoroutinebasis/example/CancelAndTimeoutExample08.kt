@@ -18,25 +18,27 @@ import kotlinx.coroutines.withTimeoutOrNull
 [main @coroutine#1] : I'm sleeping 4 ...
 [main @coroutine#1] : result : Done
  */
-fun main() = runBlocking {
-    // timeout 이 발생하면 exception 발생대신에 null 을 리턴한다.
-    val resultOfNull = withTimeoutOrNull(1300L) {
-        repeat(5) { i->
-            printlnWithThreadName("I'm sleeping $i ...")
-            delay(500L)
+class CancelAndTimeoutExample08 {
+    fun main() = runBlocking {
+        // timeout 이 발생하면 exception 발생대신에 null 을 리턴한다.
+        val resultOfNull = withTimeoutOrNull(1300L) {
+            repeat(5) { i->
+                printlnWithThreadName("I'm sleeping $i ...")
+                delay(500L)
+            }
+            "Done"
         }
-        "Done"
-    }
 
-    printlnWithThreadName("result : $resultOfNull")
+        printlnWithThreadName("result : $resultOfNull")
 
-    val resultOfDone = withTimeoutOrNull(5000L) {
-        repeat(5) { i->
-            printlnWithThreadName("I'm sleeping $i ...")
-            delay(500L)
+        val resultOfDone = withTimeoutOrNull(5000L) {
+            repeat(5) { i->
+                printlnWithThreadName("I'm sleeping $i ...")
+                delay(500L)
+            }
+            "Done"
         }
-        "Done"
-    }
 
-    printlnWithThreadName("result : $resultOfDone")
+        printlnWithThreadName("result : $resultOfDone")
+    }
 }

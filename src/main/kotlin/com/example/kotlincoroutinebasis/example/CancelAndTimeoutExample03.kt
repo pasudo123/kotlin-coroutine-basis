@@ -16,30 +16,32 @@ import kotlinx.coroutines.yield
 [DefaultDispatcher-worker-1 @coroutine#2] : Exception : kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled; job="coroutine#2":StandaloneCoroutine{Cancelling}@4c894f14
 [main @coroutine#1] : main : now i can quit
  */
-fun main() = runBlocking {
+class CancelAndTimeoutExample03 {
+    fun main() = runBlocking {
 
-    val startTime = System.currentTimeMillis()
-    val job = launch(Dispatchers.Default) {
-        try {
-            var nextPrintTime = startTime
-            var i = 0
+        val startTime = System.currentTimeMillis()
+        val job = launch(Dispatchers.Default) {
+            try {
+                var nextPrintTime = startTime
+                var i = 0
 
-            while (i < 5) {
-                if (System.currentTimeMillis() >= nextPrintTime) {
-                    // suspend 함수로 yield() 를 넣고 cancellable 이 되도록 한다.
-                    yield()
-                    printlnWithThreadName("Job : I'm sleeping ${i++} ...")
-                    nextPrintTime += 500L
+                while (i < 5) {
+                    if (System.currentTimeMillis() >= nextPrintTime) {
+                        // suspend 함수로 yield() 를 넣고 cancellable 이 되도록 한다.
+                        yield()
+                        printlnWithThreadName("Job : I'm sleeping ${i++} ...")
+                        nextPrintTime += 500L
+                    }
                 }
+            } catch (exception: Exception) {
+                printlnWithThreadName("Exception : $exception")
             }
-        } catch (exception: Exception) {
-            printlnWithThreadName("Exception : $exception")
         }
-    }
 
-    delay(1300L)
-    printlnWithThreadName("main : I'm tired of waiting !")
-    // 익셉션을 던져서 코루틴을 종료시킨다.
-    job.cancelAndJoin()
-    printlnWithThreadName("main : now i can quit")
+        delay(1300L)
+        printlnWithThreadName("main : I'm tired of waiting !")
+        // 익셉션을 던져서 코루틴을 종료시킨다.
+        job.cancelAndJoin()
+        printlnWithThreadName("main : now i can quit")
+    }
 }

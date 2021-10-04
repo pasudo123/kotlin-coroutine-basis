@@ -10,15 +10,17 @@ import kotlinx.coroutines.runBlocking
 [main @coroutine#2] : World !!
 [main] : Outer
  */
-fun main() {
-    runBlocking {
-        launch {
-            delay(1000L)
-            printlnWithThreadName("World !!")
+class Basis01 {
+    fun main() {
+        runBlocking {
+            launch {
+                delay(1000L)
+                printlnWithThreadName("World !!")
+            }
+
+            printlnWithThreadName("Hello ")
         }
 
-        printlnWithThreadName("Hello ")
+        printlnWithThreadName("Outer")
     }
-
-    printlnWithThreadName("Outer")
 }
