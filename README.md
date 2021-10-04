@@ -106,4 +106,5 @@
 ## reference
 * https://kotlinlang.org/docs/coroutines-overview.html
 * [인프런 코루틴 무료 강의](https://www.inflearn.com/course/%EC%83%88%EC%B0%A8%EC%9B%90-%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%BD%94%EB%A3%A8%ED%8B%B4/dashboard)
+* [kotlin flow api 살펴보기 naver d2](https://youtu.be/D8rUDoYCZlo)
 * https://proandroiddev.com/structured-concurrency-in-action-97c749a8f755
